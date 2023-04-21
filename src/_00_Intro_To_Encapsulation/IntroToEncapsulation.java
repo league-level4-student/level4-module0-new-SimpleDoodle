@@ -21,9 +21,9 @@ public class IntroToEncapsulation {
 		
 		// 4. Modify setFuelInTank's access modifier so you can use it.
 		// Hint: Access modifiers are described at the top of the Vehicle class.
-		
+		//Done
 		// 5. Create a setter for the vehicle's color then set its color using it.
-
+		
 		// 6. Create local variables for fuelTankCapacity, fuelInTank and mpg.
 
 		// 7. Use the vehicle's getters to initialize all of them.
