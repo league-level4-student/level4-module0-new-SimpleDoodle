@@ -25,18 +25,25 @@ public class IntroToEncapsulation {
 		// 5. Create a setter for the vehicle's color then set its color using it.
 		
 		// 6. Create local variables for fuelTankCapacity, fuelInTank and mpg.
-
+		int tankCap = car.fuelTankCapacity;
+		int fuelIn = car.fuelInTank;
+		int milesGallon = car.mpg;
 		// 7. Use the vehicle's getters to initialize all of them.
 		// Note: You may need to fix some access modifiers.
-
+		car.getMpg();
+		car.getFuelInTank();
+		car.getFuelTankCapacity();
 		// 8. Create a getter for color and do the same thing you did for steps 6 & 7.
-
+		
 		// 9. Print out all the local variables.
-
+		System.out.println(tankCap);
+		System.out.println(fuelIn);
+		System.out.println(milesGallon);
 		// 10. If you haven't already, completely encapsulate the Vehicle class.
 		// Hint: Make all member variables private and all getters/setters public.
-
+		
 		// 11. Drive the vehicle until it runs out of gas.
+		car.drive();
 	}
 
 }
@@ -51,7 +58,7 @@ class Vehicle {
 
 	// private makes the member accessible only within the class.
 
-	private int fuelInTank;
+	public int fuelInTank;
 
 	// protected makes the member accessible only to subclasses and the package.
 
@@ -89,11 +96,11 @@ class Vehicle {
 
 	// A getter returns a member variable.
 
-	private int getFuelTankCapacity() {
+	int getFuelTankCapacity() {
 		return fuelTankCapacity;
 	}
 
-	private int getFuelInTank() {
+	int getFuelInTank() {
 		return fuelInTank;
 	}
 
