@@ -1,5 +1,7 @@
 package _01_Encapsulate_the_Data;
 
+import java.awt.Robot;
+
 public class EncapsulateTheData {
 
 	// 1. Encapsulate all the members.
@@ -87,6 +89,9 @@ public class EncapsulateTheData {
 	private Object memberObj;
 	
 	public Object getMemberObj() {
+		if (memberObj instanceof String == true) {
+			memberObj = 5;
+		}
 		return memberObj;
 	}
 
