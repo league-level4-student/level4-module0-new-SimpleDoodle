@@ -69,10 +69,10 @@ public class IntroToEnums {
 Random random = new Random();
 int randInt = random.nextInt(2);
 System.out.println(arrayState[randInt].celsiusTemp());
-System.out.println(arrayState[randInt]);
+
 		// 11. Print outs both of its temperatures.
 	
-		// 11. Create a switch statement that switches on the variable you Ill czcccccccccccccccccccccccccccccccccccccccccccccreated.
+		// 11. Create a switch statement that switches on the variable you Ill created.
 		// Note: When creating the cases, you can omit the "StatesOfMatter.
 		// 12. For each case, print your favorite food or drink that uses that state.
 		// e.g. Gas/Boiling for Pasta, Solid/Ice for Popsicles, Liquid for Soda
