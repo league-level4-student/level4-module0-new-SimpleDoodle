@@ -1,8 +1,11 @@
 package _03_Intro_to_Enums;
 
+import java.lang.reflect.Array;
 import java.util.Random;
 
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 enum Elements {
 
@@ -21,18 +24,23 @@ public class IntroToEnums {
 
 		// 1. In your package explorer, create a new enum file called StatesOfMatter.
 		// Hint: This is very similar to how you create a new class file.
-
+		
 		// 2. Give the enum the following values:
 		// SOLID, LIQUID, GAS
 
 		// 3. Create an array of StatesOfMatter with all the values using .values().
 		// Hint: Use "StatesOfMatter." as if it were a static method.
-
+		StatesOfMatter arrayState[] = StatesOfMatter.values();
+		
 		// 4. Ask the user for a state of matter.
-
+		String askState = JOptionPane.showInputDialog("Enter one of the three states of matter.");
 		// 5. Iterate through the array and find what the user entered.
 		// Hint: .name() or .toString
-
+		for (int i = 0; i < arrayState.length; i++) {
+			if (arrayState[i].toString().equalsIgnoreCase(askState)) {
+				System.out.println(arrayState[i].ordinal());
+			}
+		}
 		// 6. Print outs its ordinal(order in the enum list)
 		// Hint: .ordinal()
 
@@ -58,12 +66,14 @@ public class IntroToEnums {
 		// Hint: Return the conversion: F = (C * 9/5) + 32
 
 		// 10. Create a variable of the StatesOfMatter type and initialize it randomly.
-
+Random random = new Random();
+int randInt = random.nextInt(2);
+System.out.println(arrayState[randInt].celsiusTemp());
+System.out.println(arrayState[randInt]);
 		// 11. Print outs both of its temperatures.
-		
-		// 11. Create a switch statement that switches on the variable you created.
-		// Note: When creating the cases, you can omit the "StatesOfMatter."
-
+	
+		// 11. Create a switch statement that switches on the variable you Ill czcccccccccccccccccccccccccccccccccccccccccccccreated.
+		// Note: When creating the cases, you can omit the "StatesOfMatter.
 		// 12. For each case, print your favorite food or drink that uses that state.
 		// e.g. Gas/Boiling for Pasta, Solid/Ice for Popsicles, Liquid for Soda
 
