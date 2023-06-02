@@ -39,14 +39,15 @@ public class IntroToEnums {
 		for (int i = 0; i < arrayState.length; i++) {
 			if (arrayState[i].toString().equalsIgnoreCase(askState)) {
 				System.out.println(arrayState[i].ordinal());
+				System.out.println();
 			}
 		}
 		// 6. Print outs its ordinal(order in the enum list)
 		// Hint: .ordinal()
-
+		
 		// 7. Add a celsiusTemp member variable to StatesOfMatter.
 		// Note: Make sure to encapsulate it.
-
+		
 		// 8. Give it a default value of the temperature each state occurs in water.
 		// Hint: Gas = 100, Liquid(room temp) = 25.55, Solid = 0
 
@@ -61,14 +62,16 @@ public class IntroToEnums {
 		// private Months(int daysInMonth) {
 		// this.daysInMonth = daysInMonth;
 		// }
-
+		
 		// 9. Add a convertToFahrenheit method to StatesOfMatter
 		// Hint: Return the conversion: F = (C * 9/5) + 32
 
 		// 10. Create a variable of the StatesOfMatter type and initialize it randomly.
 Random random = new Random();
 int randInt = random.nextInt(2);
+System.out.println(arrayState[randInt]);
 System.out.println(arrayState[randInt].celsiusTemp());
+System.out.println(arrayState[randInt].fahrenTemp());
 
 		// 11. Print outs both of its temperatures.
 	
