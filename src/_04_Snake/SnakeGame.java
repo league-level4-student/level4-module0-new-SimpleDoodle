@@ -116,7 +116,21 @@ public class SnakeGame implements ActionListener, KeyListener {
 		 * 
 		 * Hint: KeyEvent.VK_UP.
 		 */
-
+		switch(e.getKeyCode()) {
+		
+		case KeyEvent.VK_UP:
+			
+			break;
+		case KeyEvent.VK_DOWN:
+			
+			break;
+		case KeyEvent.VK_LEFT:
+			
+			break;
+		case KeyEvent.VK_RIGHT:
+			
+			break;
+		}
 	}
 
 	private void randomizeFoodLocation() {

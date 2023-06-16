@@ -7,6 +7,8 @@ import java.util.Iterator;
 
 import javax.tools.DocumentationTool.Location;
 
+import _04_Snake.Location.Direction;
+
 public class Snake {
 	public static final Color SNAKE_COLOR = Color.BLUE;
 	public static final int BODY_SIZE = 50;
