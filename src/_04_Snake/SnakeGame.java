@@ -139,15 +139,18 @@ public class SnakeGame implements ActionListener, KeyListener {
 		 * Create a new Location object that is set to a random x and y values between 0
 		 * and the WIDTH and HEIGHT variables respectively.
 		 */
-
-
+		Random rand = new Random();
+		int r1 = rand.nextInt(WIDTH);
+		int r2 = rand.nextInt(HEIGHT);
+		Location foodCoords = new Location(r1, r2);
+		foodLocation = foodCoords;
 		/*
 		 * Set the foodLocation equal to the Location object you just created.
 		 * 
 		 * Hint: Use the snake's isLocationOnSnake method to make sure you don't put the
 		 * food on top of the snake.
 		 */
-
+		
 	}
 
 	private void gameOver() {

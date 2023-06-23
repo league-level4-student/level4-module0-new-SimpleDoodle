@@ -3,14 +3,24 @@ package _04_Snake;
 public class Location {
 public int x;
 public int y;
-public boolean equals(int snakeX, int snakeY){
-	if (snakeX == x && snakeY == y) {
+public Location(int objectX, int objectY){
+	
+}
+public boolean LocationEquals(int snakeX, int snakeY) {
+	if(snakeX==x && snakeY==y) {
 		return true;
 	}
-	else {
 		return false;
-	}
 }
+
+public int getX() {
+	return x;
+}
+
+public void setX(int x) {
+	this.x = x;
+}
+
 enum Direction{
 	UP,DOWN,LEFT,RIGHT;
 }
