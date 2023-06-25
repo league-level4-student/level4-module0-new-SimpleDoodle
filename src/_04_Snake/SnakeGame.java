@@ -171,6 +171,8 @@ public class SnakeGame implements ActionListener, KeyListener {
 			Snake.resetLocation();
 			randomizeFoodLocation();
 		}	
+		else {
+		}
 		/*
 		 * If the user wants to play again, call the snake's resetLocation method and
 		 * this class's randomizeFoodLocation method then restart the timer. Otherwise,
