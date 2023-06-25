@@ -143,7 +143,13 @@ public class SnakeGame implements ActionListener, KeyListener {
 		int r1 = rand.nextInt(WIDTH);
 		int r2 = rand.nextInt(HEIGHT);
 		Location foodCoords = new Location(r1, r2);
+		while(Snake.isLocationOnSnake(foodCoords) == true) {
+			r1 = rand.nextInt(WIDTH);
+			r2 = rand.nextInt(HEIGHT);
+			foodCoords = new Location(r1, r2);
+		}
 		foodLocation = foodCoords;
+
 		/*
 		 * Set the foodLocation equal to the Location object you just created.
 		 * 
@@ -156,12 +162,15 @@ public class SnakeGame implements ActionListener, KeyListener {
 	private void gameOver() {
 
 		// Stop the timer.
-
+		timer.stop();
 		// Tell the user their snake is dead.
-
+		JOptionPane.showMessageDialog(null, "Your snake is dead.");
 		// Ask the user if they want to play again.
-
-
+		int response = JOptionPane.showConfirmDialog(null, "Do you want to play again?");
+		if (response == 0) {
+			Snake.resetLocation();
+			randomizeFoodLocation();
+		}	
 		/*
 		 * If the user wants to play again, call the snake's resetLocation method and
 		 * this class's randomizeFoodLocation method then restart the timer. Otherwise,

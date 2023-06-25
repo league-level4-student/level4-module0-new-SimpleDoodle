@@ -14,13 +14,13 @@ public class Snake {
 	public static final int BODY_SIZE = 50;
 
 	private SnakeSegment head;
-	private ArrayList<SnakeSegment> snake;
+	private static ArrayList<SnakeSegment> snake;
 
 	private Direction currentDirection;
 
 	private boolean canMove = true;
 
-	public Snake(Location location) {
+	public Snake(_04_Snake.Location location) {
 		snake = new ArrayList<SnakeSegment>();
 		head = new SnakeSegment(location, BODY_SIZE);
 		snake.add(head);
@@ -31,7 +31,7 @@ public class Snake {
 		snake.add(new SnakeSegment(snake.get(0).getLocation(), BODY_SIZE));
 	}
 
-	public Location getHeadLocation() {
+	public _04_Snake.Location getHeadLocation() {
 		return head.getLocation();
 	}
 
@@ -41,13 +41,23 @@ public class Snake {
 		 * Create variables for the next X and Y location of the snake's head.
 		 * Initialize them to the current X and Y locations.
 		 */
-		
+		int nextX;
+		int nextY;
+
 		/*
 		 * Use a switch statement to check on the currentDirection of the snake and
 		 * calculate the head's next x and y position. Depending on the direction, the
 		 * variables you created may increase or decrease by 1.
 		 */
+		switch (currentDirection) {
+		case UP:
 
+		case DOWN:
+			
+		case LEFT:
+
+		case RIGHT:
+		}
 		/*
 		 * Change the Location of each SnakeSegment in your snake ArrayList to the
 		 * Location of the segment in front of it.
@@ -66,8 +76,9 @@ public class Snake {
 	}
 
 	public void setDirection(Direction direction) {
-		if (isNotOppositeDirection(direction) == false) {
-			
+		if (isNotOppositeDirection(direction) == true && canMove == true) {
+			currentDirection = direction;
+			canMove = false;
 		}
 		/*
 		 * If the passed in direction is not the opposite direction of currentDirection
@@ -76,7 +87,6 @@ public class Snake {
 		 * 
 		 * Hint: Use the isNotOppositeDirection method.
 		 */
-
 	}
 
 	private boolean isNotOppositeDirection(Direction direction) {
@@ -88,14 +98,24 @@ public class Snake {
 		 * For example, if currentDirection is UP and the passed in direction is DOWN
 		 * this method should return false.
 		 */
+		if (direction == Direction.DOWN && currentDirection == Direction.UP) {
+			return false;
+		} else if (direction == Direction.UP && currentDirection == Direction.DOWN) {
+			return false;
+		} else if (direction == Direction.LEFT && currentDirection == Direction.RIGHT) {
+			return false;
+		} else if (direction == Direction.RIGHT && currentDirection == Direction.LEFT) {
+			return false;
+		} else {
+			return true;
+		}
 
-		return true;
 	}
 
-	public void resetLocation() {
+	public static void resetLocation() {
 
 		// Clear the snake.
-
+		snake.clear();
 		/*
 		 * Create a new Location object for the head at SnakeGame.WIDTH / 2,
 		 * SnakeGame.HEIGHT / 2.
@@ -131,13 +151,13 @@ public class Snake {
 		return false;
 	}
 
-	public boolean isLocationOnSnake(Location loc) {
+	public static boolean isLocationOnSnake(_04_Snake.Location foodCoords) {
 
 		/*
 		 * Complete the method so it returns true if the passed in location is located
 		 * on the snake.
 		 */
-		
+
 		return false;
 	}
 
