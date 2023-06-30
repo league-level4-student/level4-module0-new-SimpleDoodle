@@ -5,8 +5,6 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import javax.tools.DocumentationTool.Location;
-
 import _04_Snake.Location.Direction;
 
 public class Snake {
@@ -15,12 +13,10 @@ public class Snake {
 
 	private SnakeSegment head;
 	private static ArrayList<SnakeSegment> snake;
-
 	private Direction currentDirection;
-
 	private boolean canMove = true;
 
-	public Snake(_04_Snake.Location location) {
+	public Snake(Location location) {
 		snake = new ArrayList<SnakeSegment>();
 		head = new SnakeSegment(location, BODY_SIZE);
 		snake.add(head);
@@ -31,7 +27,7 @@ public class Snake {
 		snake.add(new SnakeSegment(snake.get(0).getLocation(), BODY_SIZE));
 	}
 
-	public _04_Snake.Location getHeadLocation() {
+	public Location getHeadLocation() {
 		return head.getLocation();
 	}
 
@@ -43,7 +39,8 @@ public class Snake {
 		 */
 		int nextX;
 		int nextY;
-
+		nextX = head.getLocation().getX();
+		nextY = head.getLocation().getY();
 		/*
 		 * Use a switch statement to check on the currentDirection of the snake and
 		 * calculate the head's next x and y position. Depending on the direction, the
@@ -51,12 +48,17 @@ public class Snake {
 		 */
 		switch (currentDirection) {
 		case UP:
-
+			nextY = head.getLocation().getY();
+			nextY = nextY++;
 		case DOWN:
-			
+			nextY = head.getLocation().getY();
+			nextY = nextY--;
 		case LEFT:
-
+			nextX = head.getLocation().getX();
+			nextX = nextX--;
 		case RIGHT:
+			nextX = head.getLocation().getX();
+			nextX = nextX++;
 		}
 		/*
 		 * Change the Location of each SnakeSegment in your snake ArrayList to the
@@ -65,13 +67,17 @@ public class Snake {
 		 * Use a loop starting at the end of the ArrayList and stop before the head of
 		 * the snake (index 0) or you will go out of bounds.
 		 */
-
+		for (int i = snake.size(); i > 2; i--) {
+			snake.get(i).setLocation(snake.get(i - 1).getLocation());
+		}
 		/*
 		 * Create a new Location object and initialize it with the values calculated in
 		 * the first step. Then set the head's location equal to the new location.
 		 */
-
 		// Set the canMove member variable to true.
+		Location updatedLocation = new Location(nextX, nextY);
+		head.setLocation(updatedLocation);
+		canMove = true;
 
 	}
 
@@ -87,6 +93,7 @@ public class Snake {
 		 * 
 		 * Hint: Use the isNotOppositeDirection method.
 		 */
+
 	}
 
 	private boolean isNotOppositeDirection(Direction direction) {
@@ -112,7 +119,7 @@ public class Snake {
 
 	}
 
-	public static void resetLocation() {
+	public void resetLocation() {
 
 		// Clear the snake.
 		snake.clear();
@@ -120,15 +127,15 @@ public class Snake {
 		 * Create a new Location object for the head at SnakeGame.WIDTH / 2,
 		 * SnakeGame.HEIGHT / 2.
 		 */
-
+		Location newHead = new Location(SnakeGame.WIDTH / 2, SnakeGame.HEIGHT / 2);
 		/*
 		 * Set the head member variable equal to a new SnakeSegment object. Use the
 		 * Location created in step 2 for the Location and the BODY_SIZE constant for
 		 * the size.
 		 */
-
+		head = new SnakeSegment(newHead, BODY_SIZE);
 		// Add the head to the snake.
-
+		snake.add(head);
 	}
 
 	public boolean isOutOfBounds() {
@@ -137,12 +144,20 @@ public class Snake {
 		 * Complete the method so it returns true if the head of the snake is outside of
 		 * the window and false otherwise.
 		 */
-
-		return false;
+		if (head.getLocation().getX() >= 0 && head.getLocation().getX() <= SnakeGame.WIDTH
+				&& head.getLocation().getY() >= 0 && head.getLocation().getY() <= SnakeGame.HEIGHT) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	public boolean isHeadCollidingWithBody() {
-
+		for (int i = 0; i < snake.size(); i++) {
+			if (canMove) {
+				
+			}
+		}
 		/*
 		 * Complete the method so it returns true if the head is located in the same
 		 * location as any other body segment.
@@ -151,7 +166,7 @@ public class Snake {
 		return false;
 	}
 
-	public static boolean isLocationOnSnake(_04_Snake.Location foodCoords) {
+	public boolean isLocationOnSnake(Location foodCoords) {
 
 		/*
 		 * Complete the method so it returns true if the passed in location is located

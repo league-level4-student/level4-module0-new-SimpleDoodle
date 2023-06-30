@@ -15,6 +15,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+import _04_Snake.Location.Direction;
+
 public class SnakeGame implements ActionListener, KeyListener {
 
 	/*
@@ -116,19 +118,19 @@ public class SnakeGame implements ActionListener, KeyListener {
 		 * 
 		 * Hint: KeyEvent.VK_UP.
 		 */
-		switch(e.getKeyCode()) {
-		
+		switch (e.getKeyCode()) {
+
 		case KeyEvent.VK_UP:
-			
+			snake.setDirection(Direction.UP);
 			break;
 		case KeyEvent.VK_DOWN:
-			
+			snake.setDirection(Direction.DOWN);
 			break;
 		case KeyEvent.VK_LEFT:
-			
+			snake.setDirection(Direction.LEFT);
 			break;
 		case KeyEvent.VK_RIGHT:
-			
+			snake.setDirection(Direction.RIGHT);
 			break;
 		}
 	}
@@ -143,11 +145,7 @@ public class SnakeGame implements ActionListener, KeyListener {
 		int r1 = rand.nextInt(WIDTH);
 		int r2 = rand.nextInt(HEIGHT);
 		Location foodCoords = new Location(r1, r2);
-		while(Snake.isLocationOnSnake(foodCoords) == true) {
-			r1 = rand.nextInt(WIDTH);
-			r2 = rand.nextInt(HEIGHT);
-			foodCoords = new Location(r1, r2);
-		}
+		
 		foodLocation = foodCoords;
 
 		/*
@@ -156,7 +154,7 @@ public class SnakeGame implements ActionListener, KeyListener {
 		 * Hint: Use the snake's isLocationOnSnake method to make sure you don't put the
 		 * food on top of the snake.
 		 */
-		
+
 	}
 
 	private void gameOver() {
@@ -170,8 +168,9 @@ public class SnakeGame implements ActionListener, KeyListener {
 		if (response == 0) {
 			Snake.resetLocation();
 			randomizeFoodLocation();
-		}	
-		else {
+			timer.restart();
+		} else {
+
 		}
 		/*
 		 * If the user wants to play again, call the snake's resetLocation method and
@@ -185,12 +184,14 @@ public class SnakeGame implements ActionListener, KeyListener {
 	public void actionPerformed(ActionEvent e) {
 
 		// Call the snake's update method.
-
+		snake.update();
 		/*
 		 * If the snake's head is colliding with its own body or out of bounds call the
 		 * gameOver method.
 		 */
-
+		if (snake.isHeadCollidingWithBody() == true) {
+			gameOver();
+		}
 
 		/*
 		 * If the location of the snake's head is equal to the location of the food,
