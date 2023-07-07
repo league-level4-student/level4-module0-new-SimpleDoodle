@@ -85,6 +85,7 @@ public class Snake {
 		if (isNotOppositeDirection(direction) == true && canMove == true) {
 			currentDirection = direction;
 			canMove = false;
+			
 		}
 		/*
 		 * If the passed in direction is not the opposite direction of currentDirection

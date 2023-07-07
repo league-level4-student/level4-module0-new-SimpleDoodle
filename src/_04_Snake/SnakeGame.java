@@ -164,13 +164,12 @@ public class SnakeGame implements ActionListener, KeyListener {
 		// Tell the user their snake is dead.
 		JOptionPane.showMessageDialog(null, "Your snake is dead.");
 		// Ask the user if they want to play again.
-		int response = JOptionPane.showConfirmDialog(null, "Do you want to play again?");
+		int response = JOptionPane.showConfirmDialog(null, "Do you want to continue playing?");
 		if (response == 0) {
-			Snake.resetLocation();
-			randomizeFoodLocation();
-			timer.restart();
-		} else {
-
+			snake.resetLocation();
+		}
+		else {
+			System.exit(0);
 		}
 		/*
 		 * If the user wants to play again, call the snake's resetLocation method and
