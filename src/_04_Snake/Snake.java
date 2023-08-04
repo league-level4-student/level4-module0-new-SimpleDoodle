@@ -67,7 +67,7 @@ public class Snake {
 		 * Use a loop starting at the end of the ArrayList and stop before the head of
 		 * the snake (index 0) or you will go out of bounds.
 		 */
-		for (int i = snake.size(); i > 2; i--) {
+		for (int i = snake.size(); i > 1; i--) {
 			snake.get(i).setLocation(snake.get(i - 1).getLocation());
 		}
 		/*
@@ -85,7 +85,6 @@ public class Snake {
 		if (isNotOppositeDirection(direction) == true && canMove == true) {
 			currentDirection = direction;
 			canMove = false;
-			
 		}
 		/*
 		 * If the passed in direction is not the opposite direction of currentDirection
@@ -147,16 +146,16 @@ public class Snake {
 		 */
 		if (head.getLocation().getX() >= 0 && head.getLocation().getX() <= SnakeGame.WIDTH
 				&& head.getLocation().getY() >= 0 && head.getLocation().getY() <= SnakeGame.HEIGHT) {
-			return true;
-		} else {
 			return false;
+		} else {
+			return true;
 		}
 	}
 
 	public boolean isHeadCollidingWithBody() {
-		for (int i = 0; i < snake.size(); i++) {
-			if (canMove) {
-				
+		for (int i = 1; i < snake.size(); i++) {
+			if (canMove == true && head.getLocation()==snake.get(i).getLocation()) {
+				return true;
 			}
 		}
 		/*
@@ -173,7 +172,9 @@ public class Snake {
 		 * Complete the method so it returns true if the passed in location is located
 		 * on the snake.
 		 */
-
+		if (foodCoords == getHeadLocation()) {
+			return true;
+		}
 		return false;
 	}
 

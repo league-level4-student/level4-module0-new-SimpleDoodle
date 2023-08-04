@@ -1,4 +1,4 @@
-package _04_Snake;
+package _00_Intro_To_Encapsulation;
 
 import java.util.*;
 

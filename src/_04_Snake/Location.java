@@ -4,7 +4,8 @@ public class Location {
 public int x;
 public int y;
 public Location(int objectX, int objectY){
-	
+	this.x = objectX;
+	this.y = objectY;
 }
 public boolean LocationEquals(int snakeX, int snakeY) {
 	if(snakeX==x && snakeY==y) {
@@ -12,6 +13,7 @@ public boolean LocationEquals(int snakeX, int snakeY) {
 	}
 		return false;
 }
+
 
 public int getX() {
 	return x;
