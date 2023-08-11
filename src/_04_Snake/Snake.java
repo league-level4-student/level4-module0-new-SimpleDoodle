@@ -15,7 +15,8 @@ public class Snake {
 	private static ArrayList<SnakeSegment> snake;
 	private Direction currentDirection;
 	private boolean canMove = true;
-
+	public int score = 1;
+	
 	public Snake(Location location) {
 		snake = new ArrayList<SnakeSegment>();
 		head = new SnakeSegment(location, BODY_SIZE);
@@ -25,6 +26,7 @@ public class Snake {
 
 	public void feed() {
 		snake.add(new SnakeSegment(snake.get(0).getLocation(), BODY_SIZE));
+		score+=1;
 	}
 
 	public Location getHeadLocation() {
@@ -49,16 +51,20 @@ public class Snake {
 		switch (currentDirection) {
 		case UP:
 			nextY = head.getLocation().getY();
-			nextY = nextY++;
+			nextY -= 1;
+			break;
 		case DOWN:
 			nextY = head.getLocation().getY();
-			nextY = nextY--;
+			nextY += 1;
+			break;
 		case LEFT:
 			nextX = head.getLocation().getX();
-			nextX = nextX--;
+			nextX -= 1;
+			break;
 		case RIGHT:
 			nextX = head.getLocation().getX();
-			nextX = nextX++;
+			nextX += 1;
+			break;
 		}
 		/*
 		 * Change the Location of each SnakeSegment in your snake ArrayList to the
@@ -68,7 +74,7 @@ public class Snake {
 		 * the snake (index 0) or you will go out of bounds.
 		 */
 		for (int i = snake.size(); i > 1; i--) {
-			snake.get(i).setLocation(snake.get(i - 1).getLocation());
+			snake.get(i - 1).setLocation(snake.get(i - 2).getLocation());
 		}
 		/*
 		 * Create a new Location object and initialize it with the values calculated in
@@ -154,7 +160,8 @@ public class Snake {
 
 	public boolean isHeadCollidingWithBody() {
 		for (int i = 1; i < snake.size(); i++) {
-			if (canMove == true && head.getLocation()==snake.get(i).getLocation()) {
+			if (canMove == true && head.getLocation().getX() == snake.get(i).getLocation().getX()
+					&& head.getLocation().getY() == snake.get(i).getLocation().getY()) {
 				return true;
 			}
 		}
@@ -172,10 +179,14 @@ public class Snake {
 		 * Complete the method so it returns true if the passed in location is located
 		 * on the snake.
 		 */
-		if (foodCoords == getHeadLocation()) {
-			return true;
+		for (int i = 0; i < snake.size(); i++) {
+			if (foodCoords.getX() == snake.get(i).getLocation().getX()
+					&& foodCoords.getY() == snake.get(i).getLocation().getY()) {
+				return true;
+			}
 		}
 		return false;
+
 	}
 
 	public void draw(Graphics g) {

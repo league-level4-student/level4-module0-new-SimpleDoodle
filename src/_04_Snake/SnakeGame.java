@@ -50,7 +50,7 @@ public class SnakeGame implements ActionListener, KeyListener {
 
 	public SnakeGame() {
 		snake = new Snake(new Location(WIDTH / 2, HEIGHT / 2));
-
+		randomizeFoodLocation();
 		window = new JFrame("Snake");
 		panel = new JPanel() {
 			private static final long serialVersionUID = 1L;
@@ -79,7 +79,7 @@ public class SnakeGame implements ActionListener, KeyListener {
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.setVisible(true);
 
-		randomizeFoodLocation();
+
 
 		startGame();
 	}
@@ -142,8 +142,10 @@ public class SnakeGame implements ActionListener, KeyListener {
 		 * and the WIDTH and HEIGHT variables respectively.
 		 */
 		Random rand = new Random();
-		int r1 = rand.nextInt(WIDTH);
-		int r2 = rand.nextInt(HEIGHT);
+		//int r1 = rand.nextInt(WIDTH);
+		//int r2 = rand.nextInt(HEIGHT);
+		int r1 = 7;
+		int r2 = 6;
 		Location foodCoords = new Location(r1, r2);
 		while (snake.isLocationOnSnake(foodCoords) == true) {
 			r1 = rand.nextInt(WIDTH);
@@ -167,12 +169,13 @@ public class SnakeGame implements ActionListener, KeyListener {
 		// Stop the timer.
 		timer.stop();
 		// Tell the user their snake is dead.
-		JOptionPane.showMessageDialog(null, "Your snake is dead.");
+		JOptionPane.showMessageDialog(null, "You have achieved a score of " + snake.score);
 		// Ask the user if they want to play again.
 		int response = JOptionPane.showConfirmDialog(null, "Do you want to continue playing?");
 		if (response == 0) {
 			snake.resetLocation();
 			randomizeFoodLocation();
+			snake.score = 1;
 			timer.restart();
 		} else {
 			System.exit(0);
@@ -202,7 +205,7 @@ public class SnakeGame implements ActionListener, KeyListener {
 		 * If the location of the snake's head is equal to the location of the food,
 		 * feed the snake and randomize the food location.
 		 */
-		if (snake.getHeadLocation() == foodLocation) {
+		if (snake.isLocationOnSnake(foodLocation) == true) {
 			snake.feed();
 			randomizeFoodLocation();
 		}
